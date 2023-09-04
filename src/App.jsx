@@ -1,40 +1,45 @@
+
 import {puppyList} from './data.js'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 
 
 function App() {
-const [puppies, setPuppies] = useState(puppyList)
-  console.log("puppyList: ", puppyList)
+  const [puppies, setPuppies] = useState(puppyList);
+  const [featPupId, setFeatPupId] = useState(null);
+  const featuredPup = puppies.find((pup)=> pup.id === featPupId)
+  console.log(featuredPup);
 
+  // function handleClick()
+  //   // some logic here
+
+      
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="puppies-container">
+    <div className="App">
+      {puppies.map((puppy) => {
+        return (  
+          <p 
+          onClick = {()=>{setFeatPupId(puppy.id)}} key={puppy.id}>{puppy.name}
+          </p>
+        );
+      })}
 
-        {
-          puppies.map((puppy) => {
-            return <p>{puppy.name}</p>
-          })
-        }
-
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {featPupId && (
+        <div className='puppy-info'>
+          <h2>{featuredPup.name}</h2>
+          <ul>
+            <li className='bullet'>Age: {featuredPup.age}</li>
+            <li className='bullet'>Email: {featuredPup.email}</li>
+          </ul>
+        </div>
+      )}
+ 
+    </div>
     </>
   )
 }
+
 
 export default App
