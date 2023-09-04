@@ -67,3 +67,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.puppy-info{
+  margin: 60px;
+}
+
+.app{
+  margin: 30px;
+}
+
+.bullet{
+  list-style-image: url;
+}
